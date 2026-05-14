@@ -1,152 +1,826 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KreZzStars — Маркетплейс Telegram Stars & NFT</title>
-    <script src="https://jsdelivr.net"></script>
-    <style>
-        :root {
-            --bg: #0f172a;
-            --card: #1e293b;
-            --accent: #00aaff;
-            --tg-blue: #0088cc;
-            --text: #ffffff;
-            --dim: #94a3b8;
-        }
-        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; scroll-behavior: smooth; }
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        
-        header { text-align: center; padding: 50px 0; }
-        .logo { font-size: 3rem; font-weight: 800; background: linear-gradient(to right, #0088cc, #00ffcc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
-
-        .search-container { position: sticky; top: 10px; z-index: 100; margin-bottom: 30px; }
-        #botSearch {
-            width: 100%; padding: 15px 25px; border-radius: 50px; border: 2px solid var(--tg-blue);
-            background: var(--card); color: white; font-size: 1.1rem; outline: none; box-sizing: border-box;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-        }
-
-        .main-card { background: var(--card); border-radius: 25px; padding: 25px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); }
-        .price-tag { display: inline-block; background: rgba(0, 170, 255, 0.1); border: 1px solid var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: bold; margin-bottom: 15px; }
-
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 30px; }
-        .stat-item { background: rgba(255,255,255,0.02); padding: 15px; border-radius: 15px; text-align: center; }
-        .stat-item b { display: block; font-size: 1.2rem; color: var(--accent); }
-        .stat-item span { font-size: 0.8rem; color: var(--dim); }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .feat { 
-            background: var(--card); padding: 20px; border-radius: 20px; border: 1px solid transparent; 
-            transition: 0.3s; cursor: pointer; text-decoration: none; color: inherit;
-        }
-        .feat:hover { border-color: var(--accent); background: rgba(255,255,255,0.02); }
-        .feat h3 { margin-top: 0; color: var(--accent); }
-        .highlight { border: 2px solid #4ade80 !important; transform: scale(1.02); box-shadow: 0 0 20px rgba(74, 222, 128, 0.2); }
-
-        .btn { 
-            display: block; width: fit-content; margin: 40px auto; background: linear-gradient(135deg, #0088cc, #00aaff);
-            color: white; padding: 20px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem;
-            box-shadow: 0 10px 25px rgba(0, 136, 204, 0.4); transition: 0.3s;
-        }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0, 136, 204, 0.6); }
-
-        footer { text-align: center; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); color: var(--dim); margin-top: 50px; }
-        .links a { color: var(--accent); text-decoration: none; margin: 0 15px; font-weight: bold; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Маслянино GTA - Работает 100%</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    #menu-panel {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.95);
+      padding: 40px;
+      border-radius: 25px;
+      z-index: 300;
+      text-align: center;
+      color: white;
+      min-width: 350px;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+    }
+    #menu-panel h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #ffaa00;
+    }
+    #menu-panel button {
+      padding: 15px 40px;
+      margin: 10px;
+      border: none;
+      border-radius: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      width: 80%;
+      background: #4caf50;
+      color: white;
+    }
+    #menu-panel button:hover {
+      background: #45a049;
+      transform: scale(1.05);
+    }
+    #menu-panel input {
+      padding: 12px;
+      width: 80%;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+    }
+    .btn-connect {
+      background: #2196F3 !important;
+    }
+    .btn-connect:hover {
+      background: #1976D2 !important;
+    }
+    #status-message {
+      color: #ffaa00;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    #minimap-container {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      z-index: 50;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    #minimap-canvas {
+      width: 100%;
+      height: 100%;
+    }
+    #money-panel {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #4caf50;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 20px;
+      z-index: 60;
+      border: 2px solid #4caf50;
+      display: none;
+    }
+    #players-panel {
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 15px;
+      font-size: 12px;
+      z-index: 60;
+      display: none;
+    }
+    #quest-panel {
+      position: absolute;
+      top: 220px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 15px;
+      border-left: 4px solid #ffaa00;
+      z-index: 60;
+      max-width: 260px;
+      display: none;
+    }
+    #quest-title {
+      font-weight: bold;
+      font-size: 15px;
+      color: #ffaa00;
+      margin-bottom: 6px;
+    }
+    #quest-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #ddd;
+    }
+    #quest-reward {
+      font-size: 12px;
+      color: #4caf50;
+      margin-top: 6px;
+      font-weight: bold;
+    }
+    #chat-container {
+      position: absolute;
+      bottom: 100px;
+      left: 20px;
+      width: 300px;
+      z-index: 60;
+      display: none;
+    }
+    #chat-messages {
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      max-height: 150px;
+      overflow-y: auto;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+    #chat-input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 20px;
+      border: none;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+    #interaction-hint {
+      position: absolute;
+      bottom: 120px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: #ffaa00;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      z-index: 70;
+      display: none;
+      font-size: 16px;
+    }
+    .controls {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(20, 20, 20, 0.85);
+      color: #eee;
+      padding: 14px 28px;
+      border-radius: 50px;
+      display: none;
+      gap: 20px;
+      font-size: 15px;
+      z-index: 100;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .controls span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .controls i {
+      font-style: normal;
+      background: #2a2a2a;
+      padding: 4px 10px;
+      border-radius: 20px;
+      color: #ffaa00;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
+  <div id="menu-panel">
+    <h1>🏙️ Маслянино GTA</h1>
+    <p style="color:#ccc; margin-bottom:20px;">Игра готова к запуску!</p>
+    <button onclick="startSinglePlayer()">🎮 Играть одному</button>
+    <button class="btn-connect" onclick="showOnlineMenu()">🌐 Играть с друзьями</button>
+    <div id="status-message"></div>
+  </div>
 
-<div class="container">
-    <header>
-        <div class="logo">KreZzStars</div>
-        <p style="color: var(--dim)">Ваш проводник в мир цифровых активов Telegram</p>
-    </header>
+  <div id="minimap-container"><canvas id="minimap-canvas" width="180" height="180"></canvas></div>
+  <div id="money-panel">💰 <span id="money-amount">0</span> руб.</div>
+  <div id="players-panel">👥 Онлайн: <span id="players-count">1</span></div>
+  <div id="quest-panel">
+    <div id="quest-title">📋 КВЕСТЫ</div>
+    <div id="quest-text">Получите паспорт в мэрии (E)</div>
+    <div id="quest-reward">Награда: 100 руб.</div>
+  </div>
+  <div id="chat-container">
+    <div id="chat-messages"></div>
+    <input id="chat-input" type="text" placeholder="Нажмите T для чата, Enter отправить" disabled>
+  </div>
+  <div id="interaction-hint">Нажмите E</div>
+  <div class="controls">
+    <span><i>WASD</i> движение</span>
+    <span><i>🖱️</i> камера</span>
+    <span><i>ПРОБЕЛ</i> прыжок</span>
+    <span><i>E</i> действие</span>
+    <span><i>T</i> чат</span>
+  </div>
 
-    <div class="search-container">
-        <input type="text" id="botSearch" placeholder="Что вы ищете? (купить звезды, нфт, создать бота...)">
-    </div>
+  <script src="https://cdn.jsdelivr.net/npm/simple-peer@9.11.1/simplepeer.min.js"></script>
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/" } }
+  </script>
 
-    <div class="main-card">
-        <div class="price-tag">⭐️ Курс Stars: 1.31₽</div>
-        <div style="height: 250px;"><canvas id="chart"></canvas></div>
-    </div>
+  <script type="module">
+    import * as THREE from 'three';
+    import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 
-    <div class="stats-grid">
-        <div class="stat-item"><b>80,551+</b><span>Звезд продано</span></div>
-        <div class="stat-item"><b>1000+</b><span>Клиентов</span></div>
-        <div class="stat-item"><b>293+</b><span>TON оборот</span></div>
-        <div class="stat-item"><b>76</b><span>NFT арендовано</span></div>
-    </div>
+    // Глобальные переменные
+    let isMultiplayer = false;
+    let isGameStarted = false;
+    let myPlayerId = 'Player_' + Math.random().toString(36).substr(2, 6);
+    let peers = [];
 
-    <div class="grid" id="featuresGrid">
-        <a href="https://t.me" class="feat" data-keywords="купить продать звезды stars">
-            <h3>⭐️ Звезды Stars</h3>
-            <p>Обмен по лучшему курсу 1.31₽. Мгновенно и безопасно.</p>
-        </a>
-        <a href="https://t.me" class="feat" data-keywords="купить продать нфт nft подарки аренда">
-            <h3>🎁 NFT Подарки</h3>
-            <p>Маркетплейс редких предметов и аренда красивых юзернеймов.</p>
-        </a>
-        <a href="https://t.me" class="feat" data-keywords="премиум premium подписка">
-            <h3>👑 Telegram Premium</h3>
-            <p>Активация подписки через нашего бота в пару кликов.</p>
-        </a>
-        <a href="https://t.me" class="feat" data-keywords="партнерка бот создать свой бизнес">
-            <h3>🚀 Партнерам</h3>
-            <p>Создай собственного партнерского бота на нашей платформе.</p>
-        </a>
-    </div>
+    // Основные функции меню
+    window.startSinglePlayer = function() {
+      isMultiplayer = false;
+      myPlayerId = 'Player_Local';
+      startGame();
+    };
 
-    <a href="https://t.me" class="btn">Запустить @KreZzStarsBot</a>
+    window.showOnlineMenu = function() {
+      isMultiplayer = true;
+      myPlayerId = 'Player_' + Math.random().toString(36).substr(2, 6);
+      
+      document.getElementById('menu-panel').innerHTML = `
+        <h2>🌐 Онлайн режим</h2>
+        <p style="color:#4caf50;">Ваш ID: <b>${myPlayerId}</b></p>
+        <p style="color:#ccc;font-size:14px;">Отправьте этот ID другу</p>
+        <input id="friend-id" type="text" placeholder="Введите ID друга">
+        <button class="btn-connect" onclick="connectToFriend()">🔗 Подключиться</button>
+        <button onclick="startOnlineGame()">🎮 Начать игру</button>
+        <p id="connection-status" style="color:#ffaa00;font-size:12px;margin-top:10px;"></p>
+      `;
+    };
 
-    <footer>
-        <div class="links">
-            <a href="https://t.me">Канал KreZzStars</a>
-            <a href="https://t.me">Поддержка</a>
-        </div>
-        <p style="margin-top: 20px;">Владелец: @SpookieHeart | © 2024</p>
-    </footer>
-</div>
-
-<script>
-    // Поиск по ключевым словам
-    const searchInput = document.getElementById('botSearch');
-    const features = document.querySelectorAll('.feat');
-
-    searchInput.addEventListener('input', (e) => {
-        const val = e.target.value.toLowerCase();
-        features.forEach(f => {
-            const keywords = f.getAttribute('data-keywords');
-            if (val !== "" && keywords.includes(val)) {
-                f.classList.add('highlight');
-            } else {
-                f.classList.remove('highlight');
-            }
-        });
-    });
-
-    // График курса
-    new Chart(document.getElementById('chart'), {
-        type: 'line',
-        data: {
-            labels: ['18.04', '19.04', '20.04', '21.04', '22.04', '23.04', 'Сегодня'],
-            datasets: [{
-                data: [1.32, 1.30, 1.33, 1.31, 1.32, 1.30, 1.31],
-                borderColor: '#00aaff',
-                backgroundColor: 'rgba(0, 170, 255, 0.1)',
-                fill: true, tension: 0.4, borderWidth: 3, pointRadius: 2
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: { 
-                y: { display: false, min: 1.28, max: 1.35 }, 
-                x: { grid: { display: false }, ticks: { color: '#94a3b8' } } 
-            }
+    window.connectToFriend = function() {
+      const friendId = document.getElementById('friend-id')?.value.trim();
+      if (!friendId) {
+        document.getElementById('connection-status').textContent = 'Введите ID друга!';
+        return;
+      }
+      
+      document.getElementById('connection-status').textContent = 'Подключение...';
+      
+      const peer = new SimplePeer({ initiator: true, trickle: false });
+      
+      peer.on('signal', (data) => {
+        const channel = new BroadcastChannel('maslyanino');
+        channel.postMessage({ type: 'signal', from: myPlayerId, to: friendId, signal: data });
+      });
+      
+      peer.on('connect', () => {
+        document.getElementById('connection-status').textContent = '✅ Подключено! Можно начинать игру';
+        peers.push({ id: friendId, peer: peer });
+        updatePlayersCount();
+      });
+      
+      peer.on('data', (data) => {
+        handlePeerData(friendId, JSON.parse(data));
+      });
+      
+      peer.on('error', (err) => {
+        document.getElementById('connection-status').textContent = '❌ Ошибка: ' + err.message;
+      });
+      
+      const channel = new BroadcastChannel('maslyanino');
+      channel.onmessage = (e) => {
+        if (e.data.to === myPlayerId && e.data.from === friendId && e.data.type === 'signal') {
+          peer.signal(e.data.signal);
         }
+      };
+    };
+
+    // Слушаем входящие подключения
+    const channel = new BroadcastChannel('maslyanino');
+    channel.onmessage = (e) => {
+      if (e.data.to === myPlayerId && e.data.type === 'signal' && !peers.find(p => p.id === e.data.from)) {
+        const peer = new SimplePeer({ initiator: false, trickle: false });
+        
+        peer.on('signal', (data) => {
+          channel.postMessage({ type: 'signal', from: myPlayerId, to: e.data.from, signal: data });
+        });
+        
+        peer.on('connect', () => {
+          peers.push({ id: e.data.from, peer: peer });
+          updatePlayersCount();
+        });
+        
+        peer.on('data', (data) => {
+          handlePeerData(e.data.from, JSON.parse(data));
+        });
+        
+        peer.signal(e.data.signal);
+      }
+    };
+
+    function handlePeerData(playerId, data) {
+      if (data.type === 'position') {
+        updateOtherPlayer(playerId, data.x, data.y, data.z);
+      } else if (data.type === 'chat') {
+        addChatMessage(playerId, data.message);
+      } else if (data.type === 'treeChop') {
+        const treeObj = treeObjects.get(data.treeId);
+        if (treeObj) treeObj.visible = false;
+      }
+    }
+
+    function broadcastToPeers(data) {
+      peers.forEach(({ peer }) => {
+        if (peer.connected) peer.send(JSON.stringify(data));
+      });
+    }
+
+    // Запуск онлайн игры
+    window.startOnlineGame = function() {
+      startGame();
+    };
+
+    function startGame() {
+      isGameStarted = true;
+      document.getElementById('menu-panel').style.display = 'none';
+      document.getElementById('minimap-container').style.display = 'block';
+      document.getElementById('money-panel').style.display = 'block';
+      document.getElementById('quest-panel').style.display = 'block';
+      document.querySelector('.controls').style.display = 'flex';
+      
+      if (isMultiplayer) {
+        document.getElementById('players-panel').style.display = 'block';
+        document.getElementById('chat-container').style.display = 'block';
+      }
+      
+      loadGame();
+      updateUI();
+    }
+
+    // Сохранение и загрузка
+    function saveGame() {
+      const data = {
+        money: gameState.money,
+        hasPassport: gameState.hasPassport,
+        treesCut: gameState.treesCut,
+        px: player.position.x,
+        pz: player.position.z
+      };
+      localStorage.setItem('maslyanino_v3', JSON.stringify(data));
+    }
+
+    function loadGame() {
+      const saved = localStorage.getItem('maslyanino_v3');
+      if (saved) {
+        try {
+          const data = JSON.parse(saved);
+          gameState.money = data.money || 0;
+          gameState.hasPassport = data.hasPassport || false;
+          gameState.treesCut = data.treesCut || 0;
+          player.position.set(data.px || 0, 0, data.pz || 8);
+        } catch(e) {}
+      }
+    }
+
+    const gameState = {
+      money: 0,
+      hasPassport: false,
+      treesCut: 0,
+      inInterior: false,
+      nearMayor: false,
+      nearTree: null
+    };
+
+    const otherPlayers = new Map();
+    const treeObjects = new Map();
+    const treesData = new Map();
+
+    // Сцены
+    const worldScene = new THREE.Scene();
+    worldScene.background = new THREE.Color(0x87CEEB);
+    worldScene.fog = new THREE.Fog(0x87CEEB, 35, 110);
+
+    const interiorScene = new THREE.Scene();
+    interiorScene.background = new THREE.Color(0xf5e6d3);
+
+    let activeScene = worldScene;
+
+    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 300);
+    camera.position.set(0, 5, 12);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    document.body.appendChild(renderer.domElement);
+
+    const labelRenderer = new CSS2DRenderer();
+    labelRenderer.setSize(window.innerWidth, window.innerHeight);
+    labelRenderer.domElement.style.position = 'absolute';
+    labelRenderer.domElement.style.top = '0px';
+    labelRenderer.domElement.style.pointerEvents = 'none';
+    document.body.appendChild(labelRenderer.domElement);
+
+    // Освещение
+    worldScene.add(new THREE.AmbientLight(0x505080));
+    worldScene.add(new THREE.HemisphereLight(0x606090, 0x303018, 0.6));
+    interiorScene.add(new THREE.AmbientLight(0xffd699, 0.8));
+
+    // Земля и дороги
+    const ground = new THREE.Mesh(
+      new THREE.CircleGeometry(40, 72),
+      new THREE.MeshStandardMaterial({ color: 0x4a7023, roughness: 0.9 })
+    );
+    ground.rotation.x = -Math.PI / 2;
+    ground.receiveShadow = true;
+    worldScene.add(ground);
+
+    function createRoad(x, z, w, l, r = 0) {
+      const m = new THREE.Mesh(
+        new THREE.PlaneGeometry(w, l),
+        new THREE.MeshStandardMaterial({ color: 0x3a3a3a, roughness: 0.7 })
+      );
+      m.rotation.x = -Math.PI / 2;
+      m.rotation.z = r;
+      m.position.set(x, 0.02, z);
+      worldScene.add(m);
+    }
+    createRoad(0, 0, 7.5, 32, 0);
+    createRoad(0, 0, 32, 7.5, Math.PI / 2);
+
+    // Мэрия
+    const mayorExt = new THREE.Group();
+    const extBody = new THREE.Mesh(
+      new THREE.BoxGeometry(4, 5, 4),
+      new THREE.MeshStandardMaterial({ color: 0xd4c5a9, roughness: 0.3 })
+    );
+    extBody.position.y = 2.5;
+    mayorExt.add(extBody);
+    mayorExt.position.set(0, 0, -10);
+    worldScene.add(mayorExt);
+
+    // Интерьер мэрии
+    const intFloor = new THREE.Mesh(
+      new THREE.PlaneGeometry(8, 8),
+      new THREE.MeshStandardMaterial({ color: 0x8b7355, roughness: 0.8 })
+    );
+    intFloor.rotation.x = -Math.PI / 2;
+    interiorScene.add(intFloor);
+
+    const wallMat = new THREE.MeshStandardMaterial({ color: 0xe8d5b7, roughness: 0.6 });
+    [[0, 2.5, -4, [8, 5, 0.2]], [0, 2.5, 4, [8, 5, 0.2]], [-4, 2.5, 0, [0.2, 5, 8]], [4, 2.5, 0, [0.2, 5, 8]]].forEach(([x, y, z, s]) => {
+      const wall = new THREE.Mesh(new THREE.BoxGeometry(...s), wallMat);
+      wall.position.set(x, y, z);
+      interiorScene.add(wall);
     });
-</script>
+
+    // Деревья
+    const treePositions = [
+      [-14, -14], [14, -14], [-14, 14], [14, 14],
+      [-16, -8], [16, -8], [-16, 8], [16, 8],
+      [-8, -16], [8, -16], [-8, 16], [8, 16]
+    ];
+
+    treePositions.forEach((pos, index) => {
+      const treeId = `tree_${index}`;
+      treesData.set(treeId, { id: treeId, chopped: false, regrowTime: 0 });
+
+      const treeGroup = new THREE.Group();
+      const trunk = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.25, 0.35, 2.5, 6),
+        new THREE.MeshStandardMaterial({ color: 0x6b4c3b, roughness: 0.9 })
+      );
+      trunk.position.y = 1.25;
+      treeGroup.add(trunk);
+
+      const foliage = new THREE.Mesh(
+        new THREE.ConeGeometry(1, 2.5, 8),
+        new THREE.MeshStandardMaterial({ color: 0x2f5a1f, roughness: 0.5 })
+      );
+      foliage.position.y = 3;
+      treeGroup.add(foliage);
+
+      treeGroup.position.set(pos[0], 0, pos[1]);
+      treeGroup.userData = { treeId };
+      worldScene.add(treeGroup);
+      treeObjects.set(treeId, treeGroup);
+    });
+
+    // Персонаж
+    const player = new THREE.Object3D();
+    player.position.set(0, 0, 8);
+    worldScene.add(player);
+
+    function createCharacter(color = 0x4488ff) {
+      const char = new THREE.Group();
+      const body = new THREE.Mesh(
+        new THREE.BoxGeometry(0.55, 0.85, 0.3),
+        new THREE.MeshStandardMaterial({ color, roughness: 0.4 })
+      );
+      body.position.y = 0.85;
+      char.add(body);
+
+      const head = new THREE.Mesh(
+        new THREE.SphereGeometry(0.24, 8, 8),
+        new THREE.MeshStandardMaterial({ color: 0xffccaa, roughness: 0.3 })
+      );
+      head.position.y = 1.48;
+      char.add(head);
+
+      return char;
+    }
+
+    const worldChar = createCharacter();
+    worldChar.position.set(0, 0, 8);
+    worldScene.add(worldChar);
+
+    const interiorChar = createCharacter();
+    interiorChar.position.set(0, 0, 0);
+    interiorScene.add(interiorChar);
+
+    let currentChar = worldChar;
+
+    function updateOtherPlayer(playerId, x, y, z) {
+      const op = otherPlayers.get(playerId);
+      if (op) {
+        op.mesh.position.set(x, y || 0, z);
+      } else {
+        const char = createCharacter(0xff4444);
+        char.position.set(x, y || 0, z);
+        
+        const labelDiv = document.createElement('div');
+        labelDiv.textContent = playerId;
+        labelDiv.style.color = '#fff';
+        labelDiv.style.fontSize = '10px';
+        labelDiv.style.background = 'rgba(0,0,0,0.7)';
+        labelDiv.style.padding = '2px 5px';
+        labelDiv.style.borderRadius = '5px';
+        const label = new CSS2DObject(labelDiv);
+        label.position.y = 2;
+        char.add(label);
+        
+        worldScene.add(char);
+        otherPlayers.set(playerId, { mesh: char });
+        updatePlayersCount();
+      }
+    }
+
+    function addChatMessage(playerId, message) {
+      const chatDiv = document.getElementById('chat-messages');
+      if (chatDiv) {
+        chatDiv.innerHTML += `<div><b>${playerId}:</b> ${message}</div>`;
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+      }
+    }
+
+    function updatePlayersCount() {
+      const countEl = document.getElementById('players-count');
+      if (countEl) countEl.textContent = otherPlayers.size + 1;
+    }
+
+    function updateUI() {
+      document.getElementById('money-amount').textContent = gameState.money;
+      if (!gameState.hasPassport) {
+        document.getElementById('quest-text').textContent = 'Квест 1: Получите паспорт в мэрии (E)';
+        document.getElementById('quest-reward').textContent = 'Награда: 100 руб.';
+      } else if (gameState.treesCut < 5) {
+        document.getElementById('quest-text').textContent = `Квест 2: Срубите 5 деревьев. ${gameState.treesCut}/5`;
+        document.getElementById('quest-reward').textContent = '50 руб. за дерево + 500 руб. бонус';
+      } else {
+        document.getElementById('quest-text').textContent = '✅ Все квесты выполнены!';
+        document.getElementById('quest-reward').textContent = 'Вы — почётный лесоруб!';
+      }
+    }
+
+    // Камера
+    let camYaw = 0, camPitch = 0.4, isMouseDown = false;
+    renderer.domElement.addEventListener('mousedown', (e) => {
+      if (e.button === 0 || e.button === 2) { isMouseDown = true; e.preventDefault(); }
+    });
+    window.addEventListener('mouseup', () => { isMouseDown = false; });
+    window.addEventListener('mousemove', (e) => {
+      if (isMouseDown) {
+        camYaw -= e.movementX * 0.005;
+        camPitch = Math.max(-0.3, Math.min(1.0, camPitch - e.movementY * 0.005));
+      }
+    });
+
+    // Управление
+    const keys = {};
+    document.addEventListener('keydown', (e) => {
+      keys[e.code] = true;
+      if (e.code === 'KeyT' && isMultiplayer && isGameStarted) {
+        const chatInput = document.getElementById('chat-input');
+        if (chatInput) {
+          chatInput.disabled = false;
+          chatInput.focus();
+        }
+        e.preventDefault();
+      }
+    });
+    document.addEventListener('keyup', (e) => { keys[e.code] = false; });
+
+    const chatInput = document.getElementById('chat-input');
+    if (chatInput) {
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const msg = e.target.value.trim();
+          if (msg) {
+            addChatMessage(myPlayerId, msg);
+            broadcastToPeers({ type: 'chat', playerId: myPlayerId, message: msg });
+          }
+          e.target.value = '';
+          e.target.disabled = true;
+        }
+      });
+    }
+
+    let verticalVel = 0;
+    const gravity = -15;
+    let walkTime = 0;
+    let lastE = false;
+
+    function movePlayer(spd) {
+      const dir = new THREE.Vector3();
+      const camDir = new THREE.Vector3();
+      camera.getWorldDirection(camDir);
+      camDir.y = 0;
+      camDir.normalize();
+      const camRight = new THREE.Vector3().crossVectors(camera.up, camDir).normalize();
+      if (keys.KeyW) dir.add(camDir);
+      if (keys.KeyS) dir.sub(camDir);
+      if (keys.KeyA) dir.add(camRight);
+      if (keys.KeyD) dir.sub(camRight);
+      const moving = dir.length() > 0.01;
+      if (moving) {
+        dir.normalize().multiplyScalar(spd);
+        player.position.x += dir.x;
+        player.position.z += dir.z;
+        if (currentChar) currentChar.rotation.y = Math.atan2(dir.x, dir.z);
+        return true;
+      }
+      return false;
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      if (!isGameStarted) {
+        renderer.render(worldScene, camera);
+        return;
+      }
+      
+      const dt = 0.016;
+      const hint = document.getElementById('interaction-hint');
+      if (hint) hint.style.display = 'none';
+      gameState.nearMayor = false;
+      gameState.nearTree = null;
+
+      const now = Date.now();
+      treesData.forEach((data, id) => {
+        if (data.chopped && data.regrowTime > 0 && now >= data.regrowTime) {
+          data.chopped = false;
+          data.regrowTime = 0;
+          const obj = treeObjects.get(id);
+          if (obj) obj.visible = true;
+        }
+      });
+
+      if (!gameState.inInterior) {
+        const moving = movePlayer(0.08);
+        if (moving) walkTime += 0.16;
+        else walkTime *= 0.9;
+
+        verticalVel += gravity * dt;
+        player.position.y += verticalVel * dt;
+        if (player.position.y <= 0) { player.position.y = 0; verticalVel = 0; if (keys.Space) verticalVel = 5; }
+
+        player.position.x = Math.max(-18, Math.min(18, player.position.x));
+        player.position.z = Math.max(-18, Math.min(18, player.position.z));
+
+        worldChar.position.x = player.position.x;
+        worldChar.position.z = player.position.z;
+        worldChar.position.y = player.position.y;
+
+        if (player.position.distanceTo(new THREE.Vector3(0, 0, -10)) < 4) {
+          gameState.nearMayor = true;
+          if (hint) { hint.style.display = 'block'; hint.textContent = 'Нажмите E чтобы войти в мэрию'; }
+        }
+
+        if (gameState.hasPassport) {
+          treeObjects.forEach((obj, id) => {
+            const data = treesData.get(id);
+            if (data && !data.chopped && obj.visible && player.position.distanceTo(obj.position) < 3) {
+              gameState.nearTree = id;
+              if (hint) { hint.style.display = 'block'; hint.textContent = 'Нажмите E чтобы срубить дерево'; }
+            }
+          });
+        }
+
+        if (keys.KeyE && !lastE && gameState.nearMayor) {
+          gameState.inInterior = true;
+          activeScene = interiorScene;
+          player.position.set(0, 0, 0);
+          verticalVel = 0;
+          currentChar = interiorChar;
+          interiorChar.position.set(0, 0, 0);
+        }
+
+        if (keys.KeyE && !lastE && gameState.nearTree) {
+          const data = treesData.get(gameState.nearTree);
+          const obj = treeObjects.get(gameState.nearTree);
+          if (data && !data.chopped) {
+            data.chopped = true;
+            data.regrowTime = now + 15000;
+            obj.visible = false;
+            gameState.treesCut++;
+            gameState.money += 50;
+            if (gameState.treesCut === 5 && gameState.hasPassport) gameState.money += 500;
+            saveGame();
+            updateUI();
+            if (isMultiplayer) broadcastToPeers({ type: 'treeChop', treeId: gameState.nearTree });
+          }
+        }
+
+        if (isMultiplayer) {
+          broadcastToPeers({ type: 'position', playerId: myPlayerId, x: player.position.x, y: player.position.y, z: player.position.z });
+        }
+      } else {
+        const moving = movePlayer(0.06);
+        if (moving) walkTime += 0.16;
+        else walkTime *= 0.9;
+
+        player.position.y = 0;
+        player.position.x = Math.max(-3.5, Math.min(3.5, player.position.x));
+        player.position.z = Math.max(-3.5, Math.min(3.5, player.position.z));
+
+        interiorChar.position.x = player.position.x;
+        interiorChar.position.z = player.position.z;
+        interiorChar.position.y = 0;
+
+        if (hint) { hint.style.display = 'block'; }
+        if (!gameState.hasPassport) {
+          if (hint) hint.textContent = 'Нажмите E чтобы получить паспорт';
+          if (keys.KeyE && !lastE) {
+            gameState.hasPassport = true;
+            gameState.money += 100;
+            saveGame();
+            updateUI();
+          }
+        } else {
+          if (hint) hint.textContent = 'Нажмите E чтобы выйти';
+        }
+
+        if (keys.KeyE && !lastE && gameState.hasPassport) {
+          gameState.inInterior = false;
+          activeScene = worldScene;
+          player.position.set(0, 0, -7);
+          verticalVel = 0;
+          currentChar = worldChar;
+          worldChar.position.set(0, 0, -7);
+        }
+      }
+
+      lastE = keys.KeyE || false;
+
+      const camDist = 4;
+      const target = new THREE.Vector3(player.position.x, player.position.y + 1.5, player.position.z);
+      const hDir = new THREE.Vector3(
+        Math.sin(camYaw) * Math.cos(camPitch),
+        Math.sin(camPitch),
+        Math.cos(camYaw) * Math.cos(camPitch)
+      ).normalize().multiplyScalar(camDist);
+      camera.position.lerp(target.clone().add(hDir), 0.3);
+      camera.lookAt(target);
+
+      renderer.render(activeScene, camera);
+      if (isGameStarted) labelRenderer.render(activeScene, camera);
+    }
+
+    animate();
+    setInterval(saveGame, 3000);
+    console.log('✅ Маслянино GTA готово! Нажмите "Играть одному" для начала');
+  </script>
 </body>
 </html>
